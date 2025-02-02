@@ -5,6 +5,11 @@ pub(crate) fn generate_parentheses(n: i32) -> Vec<String> {
     return parens;
 }
 
+
+/// Recursive backtracking helper to fill the vector with valid parens
+///
+/// Each recursive call builds up the supplied string further by allocating
+/// a new one with an additional paren added.
 fn helper(n: i32, l: i32, r: i32, s: String, parens: &mut Vec<String>) {
     if l + r == 2 * n {
         parens.push(s);
@@ -23,6 +28,8 @@ mod tests {
     use super::*;
     #[test]
     fn it_generates_parentheses() {
-        assert_eq!(generate_parentheses(1), vec!["()"])
+        assert_eq!(generate_parentheses(1), vec!["()"]);
+        assert_eq!(generate_parentheses(2), vec!["(())", "()()"]);
+        assert_eq!(generate_parentheses(3), vec!["((()))", "(()())", "(())()", "()(())", "()()()"]);
     }
 }
